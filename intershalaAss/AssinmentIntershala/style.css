@@ -1,0 +1,68 @@
+.container {
+	max-width: 800px;
+	margin: auto;
+	padding: 20px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+.form label {
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
+.form input[type="number"] {
+	padding: 10px;
+	border: none;
+	border-radius: 5px;
+	margin-bottom: 10px;
+}
+
+.form button {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	background-color: #4CAF50;
+	color: white;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.graph {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.graph-container {
+	position: relative;
+	width: 100%;
+	height: 400px;
+	border: 1px solid black;
+	margin-bottom: 20px;
+}
+
+.graph-axis {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.graph-axis-label {
+	position: relative;
+	width: 100%;
+	height: 20%;
+	text-align: right;
+	padding-right: 10px;
+	box-sizing: border-box;
+}
+

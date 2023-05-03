@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+	<title>Graph Plotter</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<script src="script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h1>Graph Plotter</h1>
+		<div class="form">
+			<label for="input-value">Input Value:</label>
+			<input type="number" id="input-value" name="input-value">
+			<label for="max-value">Max Value:</label>
+			<input type="number" id="max-value" name="max-value">
+			<button submit onclick="plotGraph()">Plot Graph</button>
+		</div>
+		<div class="graph">
+			<div class="graph-container">
+				<div class="graph-axis">
+					<div class="graph-axis-label">100%</div>
+					<div class="graph-axis-label">75%</div>
+					<div class="graph-axis-label">50%</div>
+					<div class="graph-axis-label">25%</div>
+					<div class="graph-axis-label">0%</div>
+				</div>
+				<div class="graph-bars">
+					<div class="graph-bar graph-bar-max"></div>
+					<div class="graph-bar graph-bar-input"></div>
+				</div>
+			</div>
+			<div class="graph-legend">
+				<div class="graph-legend-item">
+					<div class="graph-legend-color graph-bar-max"></div>
+					<div class="graph-legend-label">Max Value</div>
+				</div>
+				<div class="graph-legend-item">
+					<div class="graph-legend-color graph-bar-input"></div>
+					<div class="graph-legend-label">Input Value</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+ 
+    
+
+
+
+</body>
+</html>

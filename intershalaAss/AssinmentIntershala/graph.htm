@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<style>
+		.graph-container {
+			display: flex;
+			align-items: flex-end;
+			height: 400px;
+			border: 1px solid #ccc;
+			margin-bottom: 20px;
+		}
+		
+		.graph-bar {
+			flex-grow: 1;
+			background-color: #007bff;
+			transition: height 0.5s ease;
+		}
+		
+		.graph-label {
+			text-align: center;
+			margin-top: 5px;
+		}
+		
+		.pie-container {
+			position: relative;
+			height: 400px;
+			margin-bottom: 20px;
+		}
+		
+		.pie {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			clip: rect(0, 400px, 400px, 200px);
+			transform: none;
+			transform-origin: center center;
+			background-color: #f8f9fa;
+			transition: transform 0.5s ease;
+			background-image: conic-gradient(
+            pink 70deg, 
+            lightblue 0 235deg, 
+            orange 0);
+		}
+		
+		.pie:after {
+			content: "";
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+			clip: rect(0, 200px, 400px, 0);
+			background-color: #007bff;
+		}
+		
+		.pie-label {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: none;
+			font-size: 24px;
+			font-weight: bold;
+			color: #007bff;
+			transition: color 0.5s ease;
+		}
+	</style>
+</head>
+<body>
+    <div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h2>Vertical Bar Graph</h2>
+				<div class="graph-container">
+					<div class="graph-bar graph-bar-max"></div>
+					<div class="graph-bar graph-bar-input"></div>
+				</div>
+				<div class="form-group">
+					<label for="input-value">Input Value:</label>
+					<input type="text" class="form-control" id="input-value">
+				</div>
+				<div class="form-group">
+					<label for="max-value">Max Value:</label>
+					<input type="text" class="form-control" id="max-value">
+				</div>
+				<button class="btn btn-primary" onclick="plotVerticalBarGraph()">Plot Graph</button>
+			</div>
+			<div class="col-md-6">
+				<h2>Pie Chart</h2>
+				<div class="pie-container">
+					<div class="pie"></div>
+					<div class="pie-label">0%</div>
+				</div>
+				<div class="form-group">
+					<label for="input-value-pie">Input Value:</label>
+					<input type="text" class="form-control" id="input-value-pie">
+				</div>
+                <div class="form-group">
+					<label for="max-value-pie">Max Value:</label>
+					<input type="text" class="form-control" id="max-value-pie">
+				</div>
+				<button class="btn btn-primary" onclick="plotPieChart()">Plot Chart</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script>
+		function plotVerticalBarGraph() {
+			var inputValue = parseFloat($('#input-value').val());
+			var maxValue = parseFloat($('#max-value').val());
+			
+			if (isNaN(inputValue) || isNaN(maxValue)) {
+				alert('Please enter valid numbers for Input Value and Max Value');
+				return;
+			}
+			
+			if (inputValue > maxValue) {
+				alert('Input Value cannot be greater than Max Value');
+				return;
+			}
+			
+			var inputPercent = inputValue / maxValue * 100;
+			var maxPercent = 100;
+			
+			$('.graph-bar-input').css('height', inputPercent + '%');
+			$('.graph-bar-max').css('height', maxPercent + '%');
+		}
+		
+		function plotPieChart() {
+			var inputValue = parseFloat($('#input-value-pie').val());
+			var maxValue = parseFloat($('#max-value-pie').val());
+			
+			if (isNaN(inputValue) || isNaN(maxValue)) {
+				alert('Please enter valid numbers for Input Value and Max Value');
+				return;
+			}
+			
+			if (inputValue > maxValue) {
+				alert('Input Value cannot be greater than Max Value');
+				return;
+			}
+			
+			var inputPercent = inputValue / maxValue * 100;
+			var inputDegrees = inputPercent / 100 * 360;
+			var maxDegrees = 360 - inputDegrees;
+			
+			$('.pie').css('transform', 'rotate(' + maxDegrees + 'deg)');
+			$('.pie-label').text(inputPercent.toFixed(0) + '%');
+			$('.pie-label').css('color', '#007bff');
+		}
+	</script>
+    
+</body>
+</html>
